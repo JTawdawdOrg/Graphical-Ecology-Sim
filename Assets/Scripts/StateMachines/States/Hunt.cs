@@ -11,6 +11,7 @@ public class Hunt : State
 
     public override IEnumerator OnStart()
     {
+        Debug.Log("print from Hunt state");
         return base.OnStart();
     }
 
@@ -22,5 +23,9 @@ public class Hunt : State
     public override IEnumerator OnExit()
     {
         return base.OnExit();
+    }
+    public override string ToString()
+    {
+        return "Hunt";
     }
 }

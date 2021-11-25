@@ -1,12 +1,12 @@
-﻿using System.Collections;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Reproduce : State
+public class Flee : State
 {
-    public Reproduce(StateMachine stateMachine) : base(stateMachine)
+    public Flee(StateMachine stateMachine) : base(stateMachine)
     {
-
+        
     }
 
     public override IEnumerator OnStart()
@@ -25,6 +25,6 @@ public class Reproduce : State
     }
     public override string ToString()
     {
-        return "Reproduce";
+        return "Flee";
     }
 }

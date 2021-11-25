@@ -1,6 +1,10 @@
 using System.Collections;
 using System.Collections.Generic;
+using JetBrains.Annotations;
 using UnityEngine;
+using UnityEditor.AI;
+using UnityEngine.AI;
+using NavMeshBuilder = UnityEditor.AI.NavMeshBuilder;
 
 public class EnvironmentManager : MonoBehaviour
 {
@@ -52,6 +56,8 @@ public class EnvironmentManager : MonoBehaviour
 		//Debug.Log(Application.dataPath+"/Materials/TerrainImage.png");
 		tileArray = new Tile[(int)(environmentSize.x*environmentSize.y)];
 		GenerateTerrain();
+		
+
 	}
 	
 	int frame=0;

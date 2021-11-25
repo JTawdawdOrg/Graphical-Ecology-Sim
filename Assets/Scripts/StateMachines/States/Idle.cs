@@ -6,7 +6,7 @@ public class Idle : State
 {
     public Idle(StateMachine stateMachine) : base(stateMachine)
     {
-
+        
     }
 
     public override IEnumerator OnStart()
@@ -22,5 +22,9 @@ public class Idle : State
     public override IEnumerator OnExit()
     {
         return base.OnExit();
+    }
+    public override string ToString()
+    {
+        return "Idle";
     }
 }
