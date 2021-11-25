@@ -10,14 +10,14 @@ public class PredatorStateMachine : StateMachine
     }
 
     // Predator needs to idle
-     //SetState(new Idle(this));
+    // SetState(new Idle(this));
 
     // Predator needs to hunt
-     //SetState(new Hunt(this));
+    // SetState(new Hunt(this));
 
     // Predator needs to drink
-     //SetState(new Drink(this));
+    // SetState(new Drink(this));
 
     // Predator needs to reproduce
-     //SetState(new Reproduce(this));
+    // SetState(new Reproduce(this));
 }

@@ -23,8 +23,4 @@ public class Reproduce : State
     {
         return base.OnExit();
     }
-    public override string ToString()
-    {
-        return "Reproduce";
-    }
 }

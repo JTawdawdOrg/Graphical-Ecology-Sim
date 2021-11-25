@@ -23,8 +23,4 @@ public class Feed : State
     {
         return base.OnExit();
     }
-    public override string ToString()
-    {
-        return "Feed";
-    }
 }

@@ -7,14 +7,9 @@ public abstract class StateMachine : MonoBehaviour
     protected State _state;
 
     public void SetState(State state)
-    { 
-        _state = state;
-     //  StartCoroutine(_state.OnStart());
-    }
-
-    public State GetState()
     {
-        return _state;
+        _state = state;
+        StartCoroutine(_state.OnStart());
     }
-
+    
 }

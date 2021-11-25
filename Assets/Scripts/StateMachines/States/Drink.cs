@@ -23,9 +23,4 @@ public class Drink : State
     {
         return base.OnExit();
     }
-
-    public override string ToString()
-    {
-        return "Drink";
-    }
 }
