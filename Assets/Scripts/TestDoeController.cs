@@ -23,7 +23,7 @@ public class TestDoeController : MonoBehaviour
             RaycastHit hit;
             Physics.Raycast(ray, out hit);
 
-            if (hit.transform.tag == "Ground")
+            if (hit.transform.tag == "Grass")
             {
                 agent.SetDestination(hit.point);
             }
