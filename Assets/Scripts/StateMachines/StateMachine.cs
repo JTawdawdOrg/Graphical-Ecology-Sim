@@ -11,5 +11,10 @@ public abstract class StateMachine : MonoBehaviour
         _state = state;
         StartCoroutine(_state.OnStart());
     }
-    
+
+    public void MyDestroy(GameObject gameObject)
+    {
+        Destroy(gameObject);
+    }
+
 }
