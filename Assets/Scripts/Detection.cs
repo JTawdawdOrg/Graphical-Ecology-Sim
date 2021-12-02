@@ -10,20 +10,13 @@ public class Detection : MonoBehaviour
     [SerializeField] float detectionTimer = 0.2f;
     [SerializeField] int memorySize = 10;
     [SerializeField] float detectionAngle = 90;
-    [SerializeField] LayerMask detectionMasks;
+    [SerializeField] public LayerMask detectionMasks;
     public Action<Detection, GameObject> action;
 
     private void Start()
     {
         StartCoroutine(CheckForFood());
     }
-
-    //Debug Method to see detection sphere
-    /*private void OnDrawGizmos()
-    {
-        Gizmos.color = Color.red;
-        Gizmos.DrawWireSphere(transform.position, radius);
-    }*/
 
     private IEnumerator CheckForFood()
     {

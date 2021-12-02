@@ -16,6 +16,11 @@ public abstract class State
         yield break;
     }
 
+    public virtual IEnumerator OnUpdate()
+    {
+        yield break;
+    }
+
     public virtual IEnumerator Execution()
     {
         yield break;
