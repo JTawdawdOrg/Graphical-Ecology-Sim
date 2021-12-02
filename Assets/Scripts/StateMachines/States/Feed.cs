@@ -6,19 +6,17 @@ using UnityEngine.AI;
 public class Feed : State
 {
     private GameObject targetGrass;
-    private PreyStateMachine _preyStateMachine;
-    private Detection detection;
 
-    public Feed(PreyStateMachine stateMachine) : base(stateMachine)
+    public Feed(StateMachine stateMachine) : base(stateMachine)
     {
-        _preyStateMachine = stateMachine;
+
     }
 
     public override IEnumerator OnStart()
     {
-        detection = _stateMachine.GetComponent<Detection>();
-        detection.enabled = true;
-        detection.action += SetTargetGrass;
+        _stateMachine.detection.detectionMasks = LayerMask.GetMask("Grass");
+        _stateMachine.detection.enabled = true;
+        _stateMachine.detection.action += SetTargetGrass;
         _stateMachine.StartCoroutine(Execution());
         return base.OnStart();
     }
@@ -28,29 +26,42 @@ public class Feed : State
         if (!targetGrass)
         {
             targetGrass = grass;
-
         }
-        
+    }
+
+    public override IEnumerator OnUpdate()
+    {
+        if (_stateMachine.hunger > 100)
+        {
+            _stateMachine.StartCoroutine(OnExit());
+
+            if (_stateMachine.thirst < 50)
+                _stateMachine.SetState(new Drink(_stateMachine));
+            else if (_stateMachine.reproductiveUrge > 99)
+                _stateMachine.SetState(new Reproduce(_stateMachine));
+            else
+                _stateMachine.SetState(new Idle(_stateMachine));
+        }
+
+        return base.OnUpdate();
     }
 
     public override IEnumerator Execution()
     {
         while(true)
         {
-            if (_preyStateMachine.hunger > 100)
+            if (_stateMachine.hunger > 100)
             {
-                _stateMachine.StartCoroutine(OnExit());
                 break;
             }
                 
-
             if (targetGrass)
             {
                 // go to target
-                _stateMachine.GetComponent<NavMeshAgent>().SetDestination(targetGrass.transform.position);
+                _stateMachine.navMeshAgent.SetDestination(targetGrass.transform.position);
                 yield return new WaitForSeconds(2f);
                 _stateMachine.MyDestroy(targetGrass);
-                _preyStateMachine.hunger += 40;
+                _stateMachine.hunger += 40;
                 targetGrass = null;
             }
             else
@@ -63,7 +74,7 @@ public class Feed : State
 
                 if (hit.transform != null && hit.transform.tag == "Ground")
                 {
-                    _stateMachine.transform.GetComponent<NavMeshAgent>().SetDestination(hit.point);
+                    _stateMachine.navMeshAgent.SetDestination(hit.point);
                     yield return new WaitForSeconds(1.7f);
                 }
             } 
@@ -72,9 +83,7 @@ public class Feed : State
 
     public override IEnumerator OnExit()
     {
-        detection = _stateMachine.GetComponent<Detection>();
-        detection.enabled = false;
-        _stateMachine.SetState(new Idle(_stateMachine));
+        _stateMachine.detection.enabled = false;
         return base.OnExit();
     }
 }
