@@ -11,9 +11,9 @@ GameObject:
   - component: {fileID: 1353886830214010316}
   - component: {fileID: 1353886830214010317}
   - component: {fileID: 1353886830214010319}
-  - component: {fileID: 1353886830214010353}
   - component: {fileID: 55132760625206219}
-  m_Layer: 0
+  - component: {fileID: 1353886830214010353}
+  m_Layer: 8
   m_Name: WolfFemaleHandler
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -69,25 +69,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c4d3e06a257055647a4fbfc6a71dd7de, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
---- !u!114 &1353886830214010353
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1353886830214010314}
-  m_Enabled: 0
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 33f0719bf4a8ce44fb9704908794604c, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  radius: 5
-  detectionTimer: 0.2
-  memorySize: 10
-  detectionAngle: 90
-  detectionMasks:
-    serializedVersion: 2
-    m_Bits: 64
 --- !u!114 &55132760625206219
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -111,6 +92,25 @@ MonoBehaviour:
   reproductiveUrgeThreshhold: 99
   navMeshAgent: {fileID: 0}
   detection: {fileID: 0}
+--- !u!114 &1353886830214010353
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1353886830214010314}
+  m_Enabled: 0
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 33f0719bf4a8ce44fb9704908794604c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  radius: 5
+  detectionTimer: 0.2
+  memorySize: 10
+  detectionAngle: 90
+  detectionMasks:
+    serializedVersion: 2
+    m_Bits: 64
 --- !u!1 &7709571096298301905
 GameObject:
   m_ObjectHideFlags: 0
@@ -122,7 +122,7 @@ GameObject:
   - component: {fileID: 7040875249592365931}
   - component: {fileID: 6204250724072029390}
   - component: {fileID: 8213750297493047300}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: grey-wolf_female
   m_TagString: Untagged
   m_Icon: {fileID: 0}

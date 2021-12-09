@@ -13,7 +13,7 @@ GameObject:
   - component: {fileID: 1584683553383750411}
   - component: {fileID: 1584683553383750410}
   - component: {fileID: 1584683553383750453}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: StagHandler
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -121,6 +121,10 @@ PrefabInstance:
     - target: {fileID: 1019162765997886826, guid: dd06cd25a75f77741a85c633a700b4e6, type: 3}
       propertyPath: m_Name
       value: Stag
+      objectReference: {fileID: 0}
+    - target: {fileID: 1019162765997886826, guid: dd06cd25a75f77741a85c633a700b4e6, type: 3}
+      propertyPath: m_Layer
+      value: 7
       objectReference: {fileID: 0}
     - target: {fileID: 7303835196083176335, guid: dd06cd25a75f77741a85c633a700b4e6, type: 3}
       propertyPath: m_RootOrder

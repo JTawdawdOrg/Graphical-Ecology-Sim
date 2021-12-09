@@ -11,9 +11,9 @@ GameObject:
   - component: {fileID: 1299893301886542150}
   - component: {fileID: 1299893301886542151}
   - component: {fileID: 1299893301886542149}
-  - component: {fileID: 1299893301886542148}
+  - component: {fileID: -3122287678839972181}
   - component: {fileID: 1299893301886542203}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: WolfHandler
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -69,7 +69,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c4d3e06a257055647a4fbfc6a71dd7de, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
---- !u!114 &1299893301886542148
+--- !u!114 &-3122287678839972181
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -78,7 +78,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 1299893301886542144}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 36766141f8da6324a90bc6ab15d7cac6, type: 3}
+  m_Script: {fileID: 11500000, guid: 51f06457df323e14aa5b244fbb0254a4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   hunger: 100
@@ -122,7 +122,7 @@ GameObject:
   - component: {fileID: 3960223938860643917}
   - component: {fileID: 97479565404174824}
   - component: {fileID: 2791851802320342306}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: grey-wolf
   m_TagString: Untagged
   m_Icon: {fileID: 0}
