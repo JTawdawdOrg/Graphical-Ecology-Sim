@@ -12,6 +12,7 @@ public class Detection : MonoBehaviour
     [SerializeField] float detectionAngle = 90;
     [SerializeField] public LayerMask detectionMasks;
     public Action<Detection, GameObject> action;
+    [SerializeField]private Transform eyes;
 
     private void Start()
     {
@@ -29,6 +30,7 @@ public class Detection : MonoBehaviour
         {
             if (Physics.OverlapSphereNonAlloc(transform.position, radius, results, detectionMasks) > 0)
             {
+                
                 float minDistance = float.MaxValue;
                 GameObject bestObj = null;
                 foreach (Collider obj in results)
@@ -36,13 +38,17 @@ public class Detection : MonoBehaviour
                     if (!obj)
                         continue;
 
-                    direction = obj.transform.position - transform.position;
+                    if (obj.gameObject == this.transform.gameObject)
+                        continue;
+
+                    direction = obj.transform.position - eyes.position;
                     angle = Mathf.Abs(Vector3.Angle(transform.forward, direction));
 
                     if (angle > detectionAngle && angle < -detectionAngle)
                         continue;
 
-                    if (Physics.Raycast(transform.position, direction, out hit, radius) && hit.transform.gameObject == obj.gameObject)
+                    //Debug.DrawRay(eyes.position, direction, Color.red, radius);
+                    if (Physics.Raycast(eyes.position, direction, out hit, radius) && hit.transform.gameObject == obj.gameObject)
                     {
                         float distance = Vector3.Distance(this.transform.position, obj.transform.position);
                         if (distance < minDistance)
@@ -52,7 +58,7 @@ public class Detection : MonoBehaviour
                         }   
                     }
                 }
-                if (bestObj)
+                if (bestObj && this.enabled)
                     action.Invoke(this, bestObj);
             }
 

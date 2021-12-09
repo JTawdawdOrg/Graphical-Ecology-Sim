@@ -4,6 +4,8 @@ using UnityEngine;
 
 public class PreyStateMachine : StateMachine
 {
+    
+
     protected override void Start()
     {
         SetState(new Idle(this));
