@@ -35,9 +35,9 @@ public class Feed : State
         {
             _stateMachine.StartCoroutine(OnExit());
 
-            if (_stateMachine.thirst < 50)
+            if (_stateMachine.thirst < _stateMachine.thirstThreshold)
                 _stateMachine.SetState(new Drink(_stateMachine));
-            else if (_stateMachine.reproductiveUrge > 99)
+            else if (_stateMachine.reproductiveUrge > _stateMachine.reproductiveUrgeThreshhold)
                 _stateMachine.SetState(new Reproduce(_stateMachine));
             else
                 _stateMachine.SetState(new Idle(_stateMachine));
@@ -83,6 +83,7 @@ public class Feed : State
 
     public override IEnumerator OnExit()
     {
+        _stateMachine.detection.action -= SetTargetGrass;
         _stateMachine.detection.enabled = false;
         return base.OnExit();
     }
