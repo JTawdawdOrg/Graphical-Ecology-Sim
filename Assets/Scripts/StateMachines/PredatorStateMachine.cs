@@ -4,9 +4,16 @@ using UnityEngine;
 
 public class PredatorStateMachine : StateMachine
 {
-    void Start()
+    protected override void Start()
     {
         SetState(new Idle(this));
+        base.Start();
+    }
+	
+	protected override void Update()
+    {
+        base.Update();
+        _state.OnUpdate();
     }
 
     // Predator needs to idle

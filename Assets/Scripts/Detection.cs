@@ -6,7 +6,7 @@ using UnityEngine.AI;
 
 public class Detection : MonoBehaviour
 {
-    [SerializeField] float radius = 5f;
+    [SerializeField] float radius = 20f;
     [SerializeField] float detectionTimer = 0.2f;
     [SerializeField] int memorySize = 10;
     [SerializeField] float detectionAngle = 90;

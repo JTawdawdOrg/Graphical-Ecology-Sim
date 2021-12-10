@@ -172,6 +172,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Stag
       objectReference: {fileID: 0}
+    - target: {fileID: 1019162765997886826, guid: dd06cd25a75f77741a85c633a700b4e6, type: 3}
+      propertyPath: m_Layer
+      value: 7
+      objectReference: {fileID: 0}
     - target: {fileID: 7303835196083176335, guid: dd06cd25a75f77741a85c633a700b4e6, type: 3}
       propertyPath: m_RootOrder
       value: 0
