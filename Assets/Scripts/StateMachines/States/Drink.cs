@@ -21,9 +21,9 @@ public class Drink : State
         {
             _stateMachine.StartCoroutine(OnExit());
 
-            if (_stateMachine.hunger < 50)
+            if (_stateMachine.hunger < _stateMachine.hungerThreshold)
                 _stateMachine.SetState(new Feed(_stateMachine));
-            else if (_stateMachine.reproductiveUrge > 99)
+            else if (_stateMachine.reproductiveUrge > _stateMachine.reproductiveUrgeThreshhold)
                 _stateMachine.SetState(new Reproduce(_stateMachine));
             else
                 _stateMachine.SetState(new Idle(_stateMachine));
@@ -49,8 +49,25 @@ public class Drink : State
             }
         }
 
+        // get a point on the ground near water position
+        float x;
+        float z;
+        float yOffset = 30;
+
+        Ray ray;
+        RaycastHit hit;
+        while (true)
+        {
+            x = closestWaterPos.position.x + Random.Range(-20, 20);
+            z = closestWaterPos.position.z + Random.Range(-20, 20);
+            ray = new Ray(new Vector3(x, yOffset, z), Vector3.down);
+            Physics.Raycast(ray, out hit);
+            if (hit.transform && hit.transform.tag == "Ground")
+                break;
+        }
+
         // drink from closest water position
-        _stateMachine.navMeshAgent.SetDestination(closestWaterPos.position);
+        _stateMachine.navMeshAgent.SetDestination(hit.point);
         yield return new WaitForSeconds(5f);
         _stateMachine.thirst += 100;
     }

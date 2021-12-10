@@ -13,6 +13,7 @@ GameObject:
   - component: {fileID: 5796154299762630166}
   - component: {fileID: 5796154299762630167}
   - component: {fileID: 5796154299762630184}
+  - component: {fileID: 2554599877285947150}
   m_Layer: 7
   m_Name: DoeHandler
   m_TagString: Untagged
@@ -32,6 +33,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 4865369951675306991}
+  - {fileID: 4717004750926377560}
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -90,6 +92,8 @@ MonoBehaviour:
   hungerThreshold: 50
   thirstThreshold: 50
   reproductiveUrgeThreshhold: 99
+  matingCallEvent: {fileID: 11400000, guid: 1eeeb9a1ab17a724789c09df7ffc2038, type: 2}
+  babyDeerPrefab: {fileID: 2414768671590421356, guid: bef984ab084fca74295bcc3bd1c3ba7c, type: 3}
   navMeshAgent: {fileID: 0}
   detection: {fileID: 0}
 --- !u!114 &5796154299762630184
@@ -111,6 +115,50 @@ MonoBehaviour:
   detectionMasks:
     serializedVersion: 2
     m_Bits: 64
+  eyes: {fileID: 4717004750926377560}
+--- !u!65 &2554599877285947150
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5796154299762630163}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 1, y: 1.4792337, z: 1.5650024}
+  m_Center: {x: 0, y: 0.9528785, z: 0.039756775}
+--- !u!1 &5867809603880981710
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 4717004750926377560}
+  m_Layer: 7
+  m_Name: Eyes
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &4717004750926377560
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5867809603880981710}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 1.572, z: 0.987}
+  m_LocalScale: {x: 0.89343, y: 0.89343, z: 0.89343}
+  m_Children: []
+  m_Father: {fileID: 5796154299762630165}
+  m_RootOrder: 1
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1001 &5796154300263615412
 PrefabInstance:
   m_ObjectHideFlags: 0

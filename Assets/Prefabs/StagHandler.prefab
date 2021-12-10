@@ -13,6 +13,7 @@ GameObject:
   - component: {fileID: 1584683553383750411}
   - component: {fileID: 1584683553383750410}
   - component: {fileID: 1584683553383750453}
+  - component: {fileID: 3716002414283917666}
   m_Layer: 7
   m_Name: StagHandler
   m_TagString: Untagged
@@ -32,6 +33,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 9166978333926855640}
+  - {fileID: 765673260219472438}
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -90,6 +92,10 @@ MonoBehaviour:
   hungerThreshold: 50
   thirstThreshold: 50
   reproductiveUrgeThreshhold: 99
+  matingCallEvent: {fileID: 11400000, guid: 1eeeb9a1ab17a724789c09df7ffc2038, type: 2}
+  babyDeerPrefab: {fileID: 2414768671590421356, guid: bef984ab084fca74295bcc3bd1c3ba7c, type: 3}
+  maleDeerPrefab: {fileID: 1584683553383750414}
+  femaleDeerPrefab: {fileID: 5796154299762630163, guid: 071d0b8b914d9ef47917fc2dcbfef14c, type: 3}
   navMeshAgent: {fileID: 0}
   detection: {fileID: 0}
 --- !u!114 &1584683553383750453
@@ -111,6 +117,50 @@ MonoBehaviour:
   detectionMasks:
     serializedVersion: 2
     m_Bits: 64
+  eyes: {fileID: 765673260219472438}
+--- !u!65 &3716002414283917666
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1584683553383750414}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 1, y: 1.4219975, z: 1.4660339}
+  m_Center: {x: 0, y: 0.8498471, z: 0.115249634}
+--- !u!1 &6844416618804175297
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 765673260219472438}
+  m_Layer: 7
+  m_Name: Eyes
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &765673260219472438
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6844416618804175297}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0, y: 1.572, z: 0.9869995}
+  m_LocalScale: {x: 0.89343, y: 0.89343, z: 0.89343}
+  m_Children: []
+  m_Father: {fileID: 1584683553383750408}
+  m_RootOrder: 1
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1001 &1903836612960260183
 PrefabInstance:
   m_ObjectHideFlags: 0
