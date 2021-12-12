@@ -16,15 +16,11 @@ public abstract class StateMachine : MonoBehaviour
     [SerializeField] public float hungerThreshold = 50;
     [SerializeField] public float thirstThreshold= 50;
     [SerializeField] public float reproductiveUrgeThreshhold = 99;
+	
+	[SerializeField] public GameObject predator;
+	[SerializeField] public float speed;
 
-    [SerializeField] public MatingCallEvent matingCallEvent;
-    [SerializeField] private GameObject babyDeerPrefab;
-    [SerializeField] private GameObject maleDeerPrefab;
-    [SerializeField] private GameObject femaleDeerPrefab;
-
-    [SerializeField] private float maturity = 0;
-
-    public State _state { get; protected set; }
+    protected State _state;
 
     public NavMeshAgent navMeshAgent;
     public Detection detection;
@@ -33,7 +29,7 @@ public abstract class StateMachine : MonoBehaviour
     {
         navMeshAgent = GetComponent<NavMeshAgent>();
         detection = GetComponent<Detection>();
-
+		speed = 1;
     }
 
     protected virtual void Update()
@@ -41,17 +37,11 @@ public abstract class StateMachine : MonoBehaviour
         hunger -= hungerUsage * Time.deltaTime;
         thirst -= thirstUsage * Time.deltaTime;
 
-        if (reproductiveUrge < 100 && transform.name != "BabyDeerHandler(Clone)")
+        if (reproductiveUrge < 100)
             reproductiveUrge += reproductiveUrgeIncrease * Time.deltaTime;
 
         if (hunger <= 0 || thirst <= 0)
             Destroy(this.gameObject);
-
-        if (transform.name == "BabyDeerHandler(Clone)" && maturity < 100)
-            maturity += 1 * Time.deltaTime;
-
-        if (maturity >= 100)
-            Mature();
     }
 
     public void SetState(State state)
@@ -64,17 +54,5 @@ public abstract class StateMachine : MonoBehaviour
     {
         Destroy(gameObject);
     }
-    public void SpawnBaby()
-    {
-        Instantiate(babyDeerPrefab, transform.position, Quaternion.identity);
-    }
-    void Mature()
-    {
-        int rndm = Random.Range(1,3);
-        if (rndm == 1)
-            Instantiate(maleDeerPrefab, transform.position, Quaternion.identity);
-        else
-            Instantiate(femaleDeerPrefab, transform.position, Quaternion.identity);
-        Destroy(this.gameObject);
-    }
+
 }
