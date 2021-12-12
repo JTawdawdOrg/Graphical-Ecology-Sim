@@ -115,6 +115,9 @@ public class Reproduce : State
 
     public void Response(Vector3 pos, bool isMale)
     {
+        if (!_stateMachine)
+            return;
+
         if (isMale == _stateMachine.isMale)
             return;
 

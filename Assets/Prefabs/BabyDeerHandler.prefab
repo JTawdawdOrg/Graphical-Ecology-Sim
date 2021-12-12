@@ -43,6 +43,7 @@ GameObject:
   - component: {fileID: 2414768671590421353}
   - component: {fileID: 2414768671590421352}
   - component: {fileID: 2414768671590421335}
+  - component: {fileID: 7958903951247145484}
   m_Layer: 7
   m_Name: BabyDeerHandler
   m_TagString: Untagged
@@ -122,11 +123,22 @@ MonoBehaviour:
   thirstThreshold: 50
   reproductiveUrgeThreshhold: 99
   matingCallEvent: {fileID: 0}
+  predator: {fileID: 0}
+  speed: 0
+  isMale: 0
+  maturity: 0
+  isBaby: 0
+  navMeshAgent: {fileID: 0}
+  detection: {fileID: 0}
+  radius: 90
+  memorySize: 10
+  detectionAngle: 90
+  detectionMasks:
+    serializedVersion: 2
+    m_Bits: 0
   babyDeerPrefab: {fileID: 0}
   maleDeerPrefab: {fileID: 1584683553383750414, guid: 7e158055310f3e94491788bc1244c582, type: 3}
   femaleDeerPrefab: {fileID: 5796154299762630163, guid: 071d0b8b914d9ef47917fc2dcbfef14c, type: 3}
-  navMeshAgent: {fileID: 0}
-  detection: {fileID: 0}
 --- !u!114 &2414768671590421335
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -147,6 +159,19 @@ MonoBehaviour:
     serializedVersion: 2
     m_Bits: 64
   eyes: {fileID: 1271429522354149008}
+--- !u!65 &7958903951247145484
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2414768671590421356}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 0.30695248, y: 0.80217457, z: 0.85188293}
+  m_Center: {x: -0.0033535957, y: 0.3602562, z: 0.010353088}
 --- !u!1 &4427899861094092038
 GameObject:
   m_ObjectHideFlags: 0

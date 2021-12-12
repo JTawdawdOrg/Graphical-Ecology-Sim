@@ -4,9 +4,9 @@ using UnityEngine;
 
 public class PreyStateMachine : StateMachine
 {
-	  [SerializeField] float radius = 90f;
+	[SerializeField] float radius = 90f;
     [SerializeField] int memorySize = 10;
-	  [SerializeField] float detectionAngle = 90;
+	[SerializeField] float detectionAngle = 90;
     [SerializeField] public LayerMask detectionMasks;
     
     [SerializeField] protected GameObject babyDeerPrefab;
@@ -15,7 +15,7 @@ public class PreyStateMachine : StateMachine
 	
     protected override void Start()
     {
-		  detectionMasks=LayerMask.GetMask("Predator");
+		detectionMasks=LayerMask.GetMask("Predator");
         SetState(new Idle(this));
         base.Start();
     }

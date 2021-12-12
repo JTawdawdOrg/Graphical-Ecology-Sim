@@ -22,7 +22,7 @@ public abstract class StateMachine : MonoBehaviour
     [SerializeField] public MatingCallEvent matingCallEvent;
     
     [SerializeField] public GameObject predator;
-	  [SerializeField] public float speed;
+	[SerializeField] public float speed;
     
     public bool isMale;
 
