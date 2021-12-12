@@ -51,7 +51,7 @@ public class Hunt : State
                 _stateMachine.navMeshAgent.SetDestination(targetPrey.transform.position);
                 yield return new WaitForSeconds(2f);
                 _stateMachine.MyDestroy(targetPrey);
-                _stateMachine.hunger += 40;
+                _stateMachine.hunger += 80;
                 targetPrey = null;
             }
             else{

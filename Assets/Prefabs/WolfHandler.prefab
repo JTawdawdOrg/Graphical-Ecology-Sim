@@ -13,6 +13,7 @@ GameObject:
   - component: {fileID: 1299893301886542149}
   - component: {fileID: -3122287678839972181}
   - component: {fileID: 1299893301886542203}
+  - component: {fileID: 6604566737219739233}
   m_Layer: 8
   m_Name: WolfHandler
   m_TagString: Untagged
@@ -32,6 +33,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 3960223938860643917}
+  - {fileID: 3531878490442717624}
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -90,8 +92,15 @@ MonoBehaviour:
   hungerThreshold: 50
   thirstThreshold: 50
   reproductiveUrgeThreshhold: 99
+  matingCallEvent: {fileID: 11400000, guid: 1eeeb9a1ab17a724789c09df7ffc2038, type: 2}
+  isMale: 1
+  maturity: 0
+  isBaby: 0
   navMeshAgent: {fileID: 0}
   detection: {fileID: 0}
+  babyWolfPrefab: {fileID: 7840912975206389061, guid: 18bbb67db2bcdc34e8bc40e3173663be, type: 3}
+  maleWolfPrefab: {fileID: 1299893301886542144}
+  femaleWolfPrefab: {fileID: 1353886830214010314, guid: 82f9783c1f38c364aab887dd8b3bdbf9, type: 3}
 --- !u!114 &1299893301886542203
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -111,6 +120,20 @@ MonoBehaviour:
   detectionMasks:
     serializedVersion: 2
     m_Bits: 64
+  eyes: {fileID: 3531878490442717624}
+--- !u!65 &6604566737219739233
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1299893301886542144}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 1, y: 1.7343473, z: 2.3300323}
+  m_Center: {x: 0, y: 0.90424347, z: 0.045295715}
 --- !u!1 &4449092558873242871
 GameObject:
   m_ObjectHideFlags: 0
@@ -192,3 +215,33 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
+--- !u!1 &9006084901008999169
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 3531878490442717624}
+  m_Layer: 7
+  m_Name: Eyes
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &3531878490442717624
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 9006084901008999169}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0, y: 1.75, z: 1.912}
+  m_LocalScale: {x: 0.89343, y: 0.89343, z: 0.89343}
+  m_Children: []
+  m_Father: {fileID: 1299893301886542150}
+  m_RootOrder: 1
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}

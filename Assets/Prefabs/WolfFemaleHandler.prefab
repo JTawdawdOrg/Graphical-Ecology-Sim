@@ -13,6 +13,7 @@ GameObject:
   - component: {fileID: 1353886830214010319}
   - component: {fileID: 55132760625206219}
   - component: {fileID: 1353886830214010353}
+  - component: {fileID: 1495802663188378301}
   m_Layer: 8
   m_Name: WolfFemaleHandler
   m_TagString: Untagged
@@ -32,6 +33,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 7040875249592365931}
+  - {fileID: 8979461584051277118}
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -90,8 +92,15 @@ MonoBehaviour:
   hungerThreshold: 50
   thirstThreshold: 50
   reproductiveUrgeThreshhold: 99
+  matingCallEvent: {fileID: 11400000, guid: 1eeeb9a1ab17a724789c09df7ffc2038, type: 2}
+  isMale: 0
+  maturity: 0
+  isBaby: 0
   navMeshAgent: {fileID: 0}
   detection: {fileID: 0}
+  babyWolfPrefab: {fileID: 7840912975206389061, guid: 18bbb67db2bcdc34e8bc40e3173663be, type: 3}
+  maleWolfPrefab: {fileID: 1299893301886542144, guid: 65f7c1e9ceb04f74886749004ba6abdb, type: 3}
+  femaleWolfPrefab: {fileID: 1353886830214010314}
 --- !u!114 &1353886830214010353
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -111,6 +120,50 @@ MonoBehaviour:
   detectionMasks:
     serializedVersion: 2
     m_Bits: 64
+  eyes: {fileID: 8979461584051277118}
+--- !u!65 &1495802663188378301
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1353886830214010314}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 1, y: 1.5286012, z: 2.0419006}
+  m_Center: {x: 0, y: 0.9550631, z: 0.030670166}
+--- !u!1 &1671746621339573225
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 8979461584051277118}
+  m_Layer: 7
+  m_Name: Eyes
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &8979461584051277118
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1671746621339573225}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0, y: 1.484, z: 1.555}
+  m_LocalScale: {x: 0.89343, y: 0.89343, z: 0.89343}
+  m_Children: []
+  m_Father: {fileID: 1353886830214010316}
+  m_RootOrder: 1
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &7709571096298301905
 GameObject:
   m_ObjectHideFlags: 0

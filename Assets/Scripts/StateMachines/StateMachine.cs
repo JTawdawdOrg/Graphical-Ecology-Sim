@@ -5,6 +5,8 @@ using UnityEngine.AI;
 
 public abstract class StateMachine : MonoBehaviour
 {
+    private Tracker tracker;
+
     [SerializeField] public float hunger = 100;
     [SerializeField] public float thirst = 100;
     [SerializeField] public float reproductiveUrge = 0;
@@ -18,11 +20,11 @@ public abstract class StateMachine : MonoBehaviour
     [SerializeField] public float reproductiveUrgeThreshhold = 99;
 
     [SerializeField] public MatingCallEvent matingCallEvent;
-    [SerializeField] private GameObject babyDeerPrefab;
-    [SerializeField] private GameObject maleDeerPrefab;
-    [SerializeField] private GameObject femaleDeerPrefab;
+    
+    public bool isMale;
 
     [SerializeField] private float maturity = 0;
+    public bool isBaby;
 
     public State _state { get; protected set; }
 
@@ -33,7 +35,7 @@ public abstract class StateMachine : MonoBehaviour
     {
         navMeshAgent = GetComponent<NavMeshAgent>();
         detection = GetComponent<Detection>();
-
+        tracker = GameObject.Find("Tracker").GetComponent<Tracker>();
     }
 
     protected virtual void Update()
@@ -41,13 +43,13 @@ public abstract class StateMachine : MonoBehaviour
         hunger -= hungerUsage * Time.deltaTime;
         thirst -= thirstUsage * Time.deltaTime;
 
-        if (reproductiveUrge < 100 && transform.name != "BabyDeerHandler(Clone)")
+        if (reproductiveUrge < 100 && !isBaby)
             reproductiveUrge += reproductiveUrgeIncrease * Time.deltaTime;
 
         if (hunger <= 0 || thirst <= 0)
-            Destroy(this.gameObject);
+            MyDestroy(this.gameObject);
 
-        if (transform.name == "BabyDeerHandler(Clone)" && maturity < 100)
+        if (isBaby && maturity < 100)
             maturity += 1 * Time.deltaTime;
 
         if (maturity >= 100)
@@ -62,19 +64,20 @@ public abstract class StateMachine : MonoBehaviour
 
     public void MyDestroy(GameObject gameObject)
     {
+        if (!gameObject)
+            return;
+
+        StateMachine stateMachine = gameObject.GetComponent<StateMachine>();
+        if (stateMachine)
+            stateMachine._state.OnExit();
         Destroy(gameObject);
     }
-    public void SpawnBaby()
+    public virtual void SpawnBaby()
     {
-        Instantiate(babyDeerPrefab, transform.position, Quaternion.identity);
+        
     }
-    void Mature()
+    public virtual void Mature()
     {
-        int rndm = Random.Range(1,3);
-        if (rndm == 1)
-            Instantiate(maleDeerPrefab, transform.position, Quaternion.identity);
-        else
-            Instantiate(femaleDeerPrefab, transform.position, Quaternion.identity);
-        Destroy(this.gameObject);
+
     }
 }

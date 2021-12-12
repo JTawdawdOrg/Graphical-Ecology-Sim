@@ -19,7 +19,8 @@ public class Reproduce : State
 
     public override IEnumerator OnStart()
     {
-        _stateMachine.detection.detectionMasks = LayerMask.GetMask("Deer");
+        //_stateMachine.detection.detectionMasks = LayerMask.GetMask("Prey");
+        _stateMachine.detection.detectionMasks = LayerMask.GetMask(LayerMask.LayerToName(_stateMachine.gameObject.layer));
         _stateMachine.detection.enabled = true;
         _stateMachine.detection.action += SetTargetMate;
         _stateMachine.matingCallEvent.Register(this);
@@ -36,21 +37,40 @@ public class Reproduce : State
     IEnumerator Mate(GameObject mate)
     {
         PreyStateMachine preyStateMachine = mate.GetComponent<PreyStateMachine>();
+        PredatorStateMachine predatorStateMachine = mate.GetComponent<PredatorStateMachine>();
 
-        if (!preyStateMachine)
+        if (!preyStateMachine && !predatorStateMachine)
             yield break;
-
-        if (preyStateMachine._state.GetType() == typeof(Reproduce))
+        else if (!preyStateMachine && predatorStateMachine)
         {
-            Reproduce reproduce = (Reproduce)preyStateMachine._state;
-            if (!IsMale())
+            if (predatorStateMachine._state.GetType() == typeof(Reproduce))
             {
-                _stateMachine.SpawnBaby();
+                Reproduce reproduce = (Reproduce)predatorStateMachine._state;
+                if (!_stateMachine.isMale)
+                {
+                    predatorStateMachine.SpawnBaby();
+                }
+                _stateMachine.StartCoroutine(OnExit());
+                yield return new WaitForSeconds(5.0f);
+                _stateMachine.reproductiveUrge = 0;
             }
-            _stateMachine.StartCoroutine(OnExit());
-            yield return new WaitForSeconds(5.0f);
-            _stateMachine.reproductiveUrge = 0;
         }
+        else if (preyStateMachine && !predatorStateMachine)
+        {
+            if (preyStateMachine._state.GetType() == typeof(Reproduce))
+            {
+                Reproduce reproduce = (Reproduce)preyStateMachine._state;
+                if (!_stateMachine.isMale)
+                {
+                    preyStateMachine.SpawnBaby();
+                }
+                _stateMachine.StartCoroutine(OnExit());
+                yield return new WaitForSeconds(5.0f);
+                _stateMachine.reproductiveUrge = 0;
+            }
+        }
+
+        
     }
 
     public override IEnumerator OnUpdate()
@@ -69,7 +89,7 @@ public class Reproduce : State
 
         if (matingCallCooldown <= 0)
         {
-            _stateMachine.matingCallEvent.MatingCall(_stateMachine.transform.position, IsMale());
+            _stateMachine.matingCallEvent.MatingCall(_stateMachine.transform.position, _stateMachine.isMale);
             matingCallCooldown = matingCallMaxCooldown;
         }
 
@@ -95,7 +115,7 @@ public class Reproduce : State
 
     public void Response(Vector3 pos, bool isMale)
     {
-        if (isMale == IsMale())
+        if (isMale == _stateMachine.isMale)
             return;
 
         if (currentTarget != Vector3.zero)
@@ -105,21 +125,11 @@ public class Reproduce : State
         if (responseCooldown <= 0)
         {
             responseCooldown = responseMaxCooldown;
-            _stateMachine.matingCallEvent.MatingCall(_stateMachine.transform.position, IsMale());
+            _stateMachine.matingCallEvent.MatingCall(_stateMachine.transform.position, _stateMachine.isMale);
         }
 
         _stateMachine.navMeshAgent.SetDestination(pos);
         currentTarget = pos;
-    }
-
-    bool IsMale()
-    {
-        if (!_stateMachine)
-            return false;
-
-        if (_stateMachine.transform.name == "StagHandler(Clone)" || _stateMachine.transform.name == "StagHandler")
-            return true;
-        return false;
     }
 
     public override IEnumerator OnExit()
