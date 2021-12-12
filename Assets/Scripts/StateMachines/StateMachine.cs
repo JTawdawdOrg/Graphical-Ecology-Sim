@@ -1,4 +1,4 @@
-﻿using System.Collections;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.AI;
@@ -20,6 +20,9 @@ public abstract class StateMachine : MonoBehaviour
     [SerializeField] public float reproductiveUrgeThreshhold = 99;
 
     [SerializeField] public MatingCallEvent matingCallEvent;
+    
+    [SerializeField] public GameObject predator;
+	  [SerializeField] public float speed;
     
     public bool isMale;
 
