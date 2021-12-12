@@ -24,7 +24,7 @@ public abstract class StateMachine : MonoBehaviour
     [SerializeField] public GameObject predator;
 	[SerializeField] public float speed;
     
-    public bool isMale;
+    [SerializeField] public bool isMale;
 
     [SerializeField] private float maturity = 0;
     public bool isBaby;

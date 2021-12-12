@@ -21,6 +21,7 @@ public class Hunt : State
     }
 	
 	void SetTargetPrey(Detection detection, GameObject prey){
+        Debug.Log("Seeing target prey");
 		if (!targetPrey){
             targetPrey = prey;
         }
@@ -72,6 +73,7 @@ public class Hunt : State
     public override IEnumerator OnExit()
     {
 		_stateMachine.detection.enabled = false;
+        _stateMachine.detection.action -= SetTargetPrey;
         return base.OnExit();
     }
 }

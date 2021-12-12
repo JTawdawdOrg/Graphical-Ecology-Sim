@@ -93,6 +93,8 @@ MonoBehaviour:
   thirstThreshold: 50
   reproductiveUrgeThreshhold: 99
   matingCallEvent: {fileID: 11400000, guid: 1eeeb9a1ab17a724789c09df7ffc2038, type: 2}
+  predator: {fileID: 0}
+  speed: 0
   isMale: 0
   maturity: 0
   isBaby: 0
@@ -113,10 +115,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 33f0719bf4a8ce44fb9704908794604c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  radius: 5
+  radius: 20
   detectionTimer: 0.2
   memorySize: 10
-  detectionAngle: 90
+  detectionAngle: 120
   detectionMasks:
     serializedVersion: 2
     m_Bits: 64
