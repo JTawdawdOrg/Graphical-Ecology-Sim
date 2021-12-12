@@ -24,12 +24,12 @@ public class Idle : State
             || _stateMachine.reproductiveUrge > _stateMachine.reproductiveUrgeThreshhold)
             _stateMachine.StartCoroutine(OnExit());
 		
-		if (layer==7){//prey check for nearby predators
+		/*if (layer==7){//prey check for nearby predators
 			_stateMachine.detection.detectionMasks = LayerMask.GetMask("Predator");
 			_stateMachine.detection.enabled = true;
 			_stateMachine.detection.action += SetTargetGrass;
 			Debug.Log("");
-		}
+		}*/
 		
 		if (_stateMachine.hunger < _stateMachine.hungerThreshold){
             if(layer==8){//Predator

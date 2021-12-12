@@ -169,6 +169,7 @@ MonoBehaviour:
   detectionMasks:
     serializedVersion: 2
     m_Bits: 64
+  eyes: {fileID: 0}
 --- !u!114 &9140797463263482692
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -190,5 +191,12 @@ MonoBehaviour:
   hungerThreshold: 50
   thirstThreshold: 50
   reproductiveUrgeThreshhold: 99
+  matingCallEvent: {fileID: 0}
+  isMale: 0
+  maturity: 0
+  isBaby: 0
   navMeshAgent: {fileID: 0}
   detection: {fileID: 0}
+  babyWolfPrefab: {fileID: 7840912975206389061}
+  maleWolfPrefab: {fileID: 1299893301886542144, guid: 65f7c1e9ceb04f74886749004ba6abdb, type: 3}
+  femaleWolfPrefab: {fileID: 1353886830214010314, guid: 82f9783c1f38c364aab887dd8b3bdbf9, type: 3}

@@ -4,6 +4,10 @@ using UnityEngine;
 
 public class PredatorStateMachine : StateMachine
 {
+    [SerializeField] private GameObject babyWolfPrefab;
+    [SerializeField] private GameObject maleWolfPrefab;
+    [SerializeField] private GameObject femaleWolfPrefab;
+
     protected override void Start()
     {
         SetState(new Idle(this));
@@ -16,15 +20,20 @@ public class PredatorStateMachine : StateMachine
         _state.OnUpdate();
     }
 
-    // Predator needs to idle
-    // SetState(new Idle(this));
+    public override void SpawnBaby()
+    {
+        GameObject temp = Instantiate(babyWolfPrefab, transform.position, Quaternion.identity);
+        temp.GetComponent<StateMachine>().isBaby = true;
+    }
 
-    // Predator needs to hunt
-    // SetState(new Hunt(this));
+    public override void Mature()
+    {
+        int rndm = Random.Range(1, 3);
+        if (rndm == 1)
+            Instantiate(maleWolfPrefab, transform.position, Quaternion.identity);
+        else
+            Instantiate(femaleWolfPrefab, transform.position, Quaternion.identity);
 
-    // Predator needs to drink
-    // SetState(new Drink(this));
-
-    // Predator needs to reproduce
-    // SetState(new Reproduce(this));
+        MyDestroy(this.gameObject);
+    }
 }

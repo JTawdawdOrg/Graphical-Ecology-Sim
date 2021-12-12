@@ -87,15 +87,20 @@ MonoBehaviour:
   thirst: 100
   reproductiveUrge: 0
   hungerUsage: 1
-  thirstUsage: 1
+  thirstUsage: 0.5
   reproductiveUrgeIncrease: 1
   hungerThreshold: 50
-  thirstThreshold: 50
+  thirstThreshold: 25
   reproductiveUrgeThreshhold: 99
   matingCallEvent: {fileID: 11400000, guid: 1eeeb9a1ab17a724789c09df7ffc2038, type: 2}
-  babyDeerPrefab: {fileID: 2414768671590421356, guid: bef984ab084fca74295bcc3bd1c3ba7c, type: 3}
+  isMale: 0
+  maturity: 0
+  isBaby: 0
   navMeshAgent: {fileID: 0}
   detection: {fileID: 0}
+  babyDeerPrefab: {fileID: 2414768671590421356, guid: bef984ab084fca74295bcc3bd1c3ba7c, type: 3}
+  maleDeerPrefab: {fileID: 1584683553383750414, guid: 7e158055310f3e94491788bc1244c582, type: 3}
+  femaleDeerPrefab: {fileID: 5796154299762630163}
 --- !u!114 &5796154299762630184
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -171,18 +176,6 @@ PrefabInstance:
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 1438151936378902619, guid: 77821cbe72aa4654f93f5d2fa75515fc, type: 3}
-      propertyPath: m_LocalScale.x
-      value: 100
-      objectReference: {fileID: 0}
-    - target: {fileID: 1438151936378902619, guid: 77821cbe72aa4654f93f5d2fa75515fc, type: 3}
-      propertyPath: m_LocalScale.y
-      value: 100.00007
-      objectReference: {fileID: 0}
-    - target: {fileID: 1438151936378902619, guid: 77821cbe72aa4654f93f5d2fa75515fc, type: 3}
-      propertyPath: m_LocalScale.z
-      value: 100.00007
-      objectReference: {fileID: 0}
-    - target: {fileID: 1438151936378902619, guid: 77821cbe72aa4654f93f5d2fa75515fc, type: 3}
       propertyPath: m_LocalPosition.x
       value: 0
       objectReference: {fileID: 0}
@@ -225,14 +218,6 @@ PrefabInstance:
     - target: {fileID: 2085716548697508813, guid: 77821cbe72aa4654f93f5d2fa75515fc, type: 3}
       propertyPath: m_Name
       value: Doe
-      objectReference: {fileID: 0}
-    - target: {fileID: 2085716548697508813, guid: 77821cbe72aa4654f93f5d2fa75515fc, type: 3}
-      propertyPath: m_Layer
-      value: 7
-      objectReference: {fileID: 0}
-    - target: {fileID: 2085716548697508813, guid: 77821cbe72aa4654f93f5d2fa75515fc, type: 3}
-      propertyPath: m_StaticEditorFlags
-      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 77821cbe72aa4654f93f5d2fa75515fc, type: 3}

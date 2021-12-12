@@ -87,15 +87,18 @@ MonoBehaviour:
   thirst: 100
   reproductiveUrge: 0
   hungerUsage: 1
-  thirstUsage: 1
+  thirstUsage: 0.5
   reproductiveUrgeIncrease: 1
   hungerThreshold: 50
-  thirstThreshold: 50
+  thirstThreshold: 25
   reproductiveUrgeThreshhold: 99
   matingCallEvent: {fileID: 11400000, guid: 1eeeb9a1ab17a724789c09df7ffc2038, type: 2}
   babyDeerPrefab: {fileID: 2414768671590421356, guid: bef984ab084fca74295bcc3bd1c3ba7c, type: 3}
   maleDeerPrefab: {fileID: 1584683553383750414}
   femaleDeerPrefab: {fileID: 5796154299762630163, guid: 071d0b8b914d9ef47917fc2dcbfef14c, type: 3}
+  isMale: 1
+  maturity: 0
+  isBaby: 0
   navMeshAgent: {fileID: 0}
   detection: {fileID: 0}
 --- !u!114 &1584683553383750453
@@ -172,21 +175,9 @@ PrefabInstance:
       propertyPath: m_Name
       value: Stag
       objectReference: {fileID: 0}
-    - target: {fileID: 1019162765997886826, guid: dd06cd25a75f77741a85c633a700b4e6, type: 3}
-      propertyPath: m_Layer
-      value: 7
-      objectReference: {fileID: 0}
     - target: {fileID: 7303835196083176335, guid: dd06cd25a75f77741a85c633a700b4e6, type: 3}
       propertyPath: m_RootOrder
       value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 7303835196083176335, guid: dd06cd25a75f77741a85c633a700b4e6, type: 3}
-      propertyPath: m_LocalScale.y
-      value: 100.00007
-      objectReference: {fileID: 0}
-    - target: {fileID: 7303835196083176335, guid: dd06cd25a75f77741a85c633a700b4e6, type: 3}
-      propertyPath: m_LocalScale.z
-      value: 100.00007
       objectReference: {fileID: 0}
     - target: {fileID: 7303835196083176335, guid: dd06cd25a75f77741a85c633a700b4e6, type: 3}
       propertyPath: m_LocalPosition.x

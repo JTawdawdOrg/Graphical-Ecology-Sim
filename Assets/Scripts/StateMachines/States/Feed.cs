@@ -74,6 +74,15 @@ public class Feed : State
 
                 if (hit.transform != null && hit.transform.tag == "Ground")
                 {
+                    if (!_stateMachine.navMeshAgent.isOnNavMesh)
+                        break;
+
+                    NavMeshPath navMeshPath = new NavMeshPath();
+                    _stateMachine.navMeshAgent.CalculatePath(hit.point, navMeshPath);
+
+                    if (navMeshPath.status == NavMeshPathStatus.PathPartial)
+                        continue;
+
                     _stateMachine.navMeshAgent.SetDestination(hit.point);
                     yield return new WaitForSeconds(1.7f);
                 }

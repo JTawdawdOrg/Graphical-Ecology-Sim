@@ -1,17 +1,21 @@
-﻿using System.Collections;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
 public class PreyStateMachine : StateMachine
 {
-	[SerializeField] float radius = 90f;
+	  [SerializeField] float radius = 90f;
     [SerializeField] int memorySize = 10;
-	[SerializeField] float detectionAngle = 90;
+	  [SerializeField] float detectionAngle = 90;
     [SerializeField] public LayerMask detectionMasks;
+    
+    [SerializeField] protected GameObject babyDeerPrefab;
+    [SerializeField] protected GameObject maleDeerPrefab;
+    [SerializeField] protected GameObject femaleDeerPrefab;
 	
     protected override void Start()
     {
-		detectionMasks=LayerMask.GetMask("Predator");
+		  detectionMasks=LayerMask.GetMask("Predator");
         SetState(new Idle(this));
         base.Start();
     }
@@ -59,4 +63,22 @@ public class PreyStateMachine : StateMachine
 		}
 		return null;
 	}
+  
+  public override void SpawnBaby()
+    {
+        GameObject temp = Instantiate(babyDeerPrefab, transform.position, Quaternion.identity);
+        temp.GetComponent<StateMachine>().isBaby = true;
+    }
+
+    public override void Mature()
+    {
+        int rndm = Random.Range(1, 3);
+        if (rndm == 1)
+            Instantiate(maleDeerPrefab, transform.position, Quaternion.identity);
+        else
+            Instantiate(femaleDeerPrefab, transform.position, Quaternion.identity);
+
+        MyDestroy(this.gameObject);
+    }
+  
 }
