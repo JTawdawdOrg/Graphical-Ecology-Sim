@@ -12,7 +12,7 @@ public class Reproduce : State
     private float responseMaxCooldown = 5.0f;
     private float responseCooldown;
 
-    private bool mated = false;
+    public bool mated = false;
 
     public Reproduce(StateMachine stateMachine) : base(stateMachine)
     {
@@ -59,7 +59,7 @@ public class Reproduce : State
             if (predatorStateMachine._state.GetType() == typeof(Reproduce))
             {
                 Reproduce reproduce = (Reproduce)predatorStateMachine._state;
-                if (!_stateMachine.isMale)
+                if (_stateMachine.isMale)
                 {
                     predatorStateMachine.SpawnBaby();
                 }
@@ -73,7 +73,7 @@ public class Reproduce : State
             if (preyStateMachine._state.GetType() == typeof(Reproduce))
             {
                 Reproduce reproduce = (Reproduce)preyStateMachine._state;
-                if (!_stateMachine.isMale)
+                if (_stateMachine.isMale)
                 {
                     preyStateMachine.SpawnBaby();
                 }

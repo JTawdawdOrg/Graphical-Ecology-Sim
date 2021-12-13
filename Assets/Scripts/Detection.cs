@@ -22,18 +22,8 @@ public class Detection : MonoBehaviour
     {
         StartCoroutine(CheckForFood());
     }
-
-    /*private void OnEnable()
-    {
-        coroutine = CheckForFood();
-        StartCoroutine(coroutine);
-    }
-
-    private void OnDisable()
-    {
-        StopCoroutine(coroutine);
-    }*/
-    /*private void OnDrawGizmos()
+    /*
+    private void OnDrawGizmos()
     {
         Gizmos.DrawWireSphere(transform.position, radius);
     }*/

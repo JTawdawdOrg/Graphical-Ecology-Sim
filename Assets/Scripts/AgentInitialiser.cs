@@ -19,14 +19,14 @@ public class AgentInitialiser : MonoBehaviour
         InitialSpawner();
     }
 
-    // Spawns one piece of grass in a random location
+    // Spawns one deer in a random location
     void SpawnRandomDeer(float yOffset)
     {
         float x = Random.Range(0, 300);
         float z = Random.Range(0, -300);
 
         // perform a raycast at the desired location (at an offset above the heighest ground) directly downwards
-        // to ensure we are only placing grass on suitable ground.
+        // to ensure we are only placing on suitable ground.
         Ray ray = new Ray(new Vector3(x, yOffset, z), Vector3.down);
         RaycastHit hit;
         Physics.Raycast(ray, out hit);
@@ -48,13 +48,14 @@ public class AgentInitialiser : MonoBehaviour
         }
     }
 
+    // Spawns one wolf in a random location
     void SpawnRandomWolf(float yOffset)
     {
         float x = Random.Range(0, 300);
         float z = Random.Range(0, -300);
 
         // perform a raycast at the desired location (at an offset above the heighest ground) directly downwards
-        // to ensure we are only placing grass on suitable ground.
+        // to ensure we are only placing on suitable ground.
         Ray ray = new Ray(new Vector3(x, yOffset, z), Vector3.down);
         RaycastHit hit;
         Physics.Raycast(ray, out hit);
@@ -75,7 +76,7 @@ public class AgentInitialiser : MonoBehaviour
         }
     }
 
-    // Creates an initial population of grass
+    // Creates an initial population
     void InitialSpawner()
     {
         Vector3 currentPos = new Vector3(0, 0, 0);
