@@ -21,7 +21,6 @@ public class Hunt : State
     }
 	
 	void SetTargetPrey(Detection detection, GameObject prey){
-        Debug.Log("Seeing target prey");
 		if (!targetPrey){
             targetPrey = prey;
         }
