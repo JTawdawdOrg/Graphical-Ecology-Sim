@@ -12,6 +12,8 @@ public class Reproduce : State
     private float responseMaxCooldown = 5.0f;
     private float responseCooldown;
 
+    private bool mated = false;
+
     public Reproduce(StateMachine stateMachine) : base(stateMachine)
     {
 
@@ -23,13 +25,24 @@ public class Reproduce : State
         _stateMachine.detection.detectionMasks = LayerMask.GetMask(LayerMask.LayerToName(_stateMachine.gameObject.layer));
         _stateMachine.detection.enabled = true;
         _stateMachine.detection.action += SetTargetMate;
+        _stateMachine.detection.detectionAngle = 180.0f;
         _stateMachine.matingCallEvent.Register(this);
         _stateMachine.StartCoroutine(Execution());
+
+        mated = false;
+
         return base.OnStart();
     }
 
     void SetTargetMate(Detection detection, GameObject mate)
     {
+        StateMachine stateMachine = mate.GetComponent<StateMachine>();
+        if (!stateMachine)
+            return;
+        if (_stateMachine.isMale == stateMachine.isMale)
+            return;
+        if (mated)
+            return;
         targetMate = mate;
         _stateMachine.StartCoroutine(Mate(mate));
     }
@@ -65,6 +78,7 @@ public class Reproduce : State
                     preyStateMachine.SpawnBaby();
                 }
                 _stateMachine.StartCoroutine(OnExit());
+                mated = true;
                 yield return new WaitForSeconds(5.0f);
                 _stateMachine.reproductiveUrge = 0;
             }
@@ -115,6 +129,9 @@ public class Reproduce : State
 
     public void Response(Vector3 pos, bool isMale)
     {
+        if (!_stateMachine)
+            return;
+
         if (isMale == _stateMachine.isMale)
             return;
 
@@ -134,6 +151,7 @@ public class Reproduce : State
 
     public override IEnumerator OnExit()
     {
+        _stateMachine.detection.detectionAngle = 90.0f;
         _stateMachine.detection.action -= SetTargetMate;
         _stateMachine.detection.enabled = false;
         _stateMachine.matingCallEvent.Deregister(this);

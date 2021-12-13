@@ -3385,7 +3385,7 @@ MonoBehaviour:
   WolfMalePrefab: {fileID: 1299893301886542144, guid: 65f7c1e9ceb04f74886749004ba6abdb, type: 3}
   WolfFemalePrefab: {fileID: 1353886830214010314, guid: 82f9783c1f38c364aab887dd8b3bdbf9, type: 3}
   InitialDeerSpawnAmount: 50
-  InitialWolfSpawnAmount: 0
+  InitialWolfSpawnAmount: 30
   DeerCounter: 0
   WolfCounter: 0
 --- !u!4 &89348542
