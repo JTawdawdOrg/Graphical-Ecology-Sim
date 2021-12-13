@@ -1,0 +1,205 @@
+
+\documentclass[a4paper, oneside, 11pt]{report}
+\usepackage{epsfig,pifont,float,multirow,amsmath,amssymb}
+\newcommand{\mc}{\multicolumn{1}{c|}}
+\newcommand{\mb}{\mathbf}
+\newcommand{\mi}{\mathit}
+\newcommand{\oa}{\overrightarrow}
+\newcommand{\bs}{\boldsymbol}
+\newcommand{\ra}{\rightarrow}
+\newcommand{\la}{\leftarrow}
+\usepackage{algorithm}
+\usepackage{algorithmic}
+\topmargin = 0pt
+\voffset = -80pt
+\oddsidemargin = 15pt
+\textwidth = 425pt
+\textheight = 750pt
+
+\begin{document}
+
+\begin{titlepage}
+\begin{center}
+\rule{12cm}{1mm} \\
+\vspace{1cm}
+{\large  CMP-6048A Advanced Programming}
+\vspace{7.5cm}
+\\{\Large Project Report - 15 December 2021}
+\vspace{1.5cm}
+\\{\LARGE Graphical Ecology Simulation}
+\vspace{1.0cm}
+\\{\Large Group members: \\ Jordan Taylor, Louis Mayne, Luke Amos}
+\vspace{10.0cm}
+\\{\large School of Computing Sciences, University of East Anglia}
+\\ \rule{12cm}{0.5mm}
+\\ \hspace{8.5cm} {\large Version 1.0}
+\end{center}
+\end{titlepage}
+
+
+\setcounter{page}{1}
+%\pagenumbering{roman}
+%\newpage
+
+
+\begin{abstract}
+In Our Graphical Ecology Simulation we planned to implement a finite state machine design pattern to be used on each agent. This state machine would hold the current state and execute that state's behaviour. The states we planned to implement were "Idle", "Feed", "Hunt", "Flee", and "Reproduce". A basic implementation of these states would make up our Minimum Viable Product. We also planned to add a genetics system, to modify the attributes of the state machine to make different agents better or worse at completing their goals. We completed the basic implementations of the listed states but did not get any further. The final product is an ecology simulation where agents make random decisions to try to achieve their goals, we found that because the agents were not making "smart" decisions their fate as a group (the prey or predators) was determined by their ability to detect their targets. 
+\end{abstract}
+
+\chapter{Introduction}
+\label{chap:intro}
+
+\section{Project statement}
+Simulate a food chain through the interactions of agents with AI’s modeling a producer, a primary consumer and a predator. The AI implementation should be independent from unity.  
+
+A producer may grow randomly or in accordance with some other factors such as elevation in the world or proximity to other agents. 
+
+A primary consumer would have a searching for food state and a concept of hunger. It would also have a fleeing state and a concept of a predator/death. It would have a proliferation stage where other primary consumer agents are created. It could be a herd animal with boid like behaviors. 
+
+A predator has a searching for food state where they chase primary consumers and eat then and a concept of hunger. A predator has a proliferation stage where other predator agents are created. Create a simulated space where all the agents move in accordance with their AI. Track the populations of each individual species over time/generations as well as showing their interactions real time graphically. 
+
+\section{MoSCoW}
+
+Must Have: 
+\begin{itemize}
+	\item{Some form of agent movement system (Tilemap or baking to terrain)}
+	\item{Agent traits to dictate behaviors}
+	\item{Hunger }
+	\item{Thirst }
+	\item{Reproductive urge}
+	\item{A predator}
+	\begin{itemize}
+		\item{Idle}
+		\item{Hunt}
+		\item{Reproduce}
+	\end{itemize}
+
+	\item{A prey}
+	\begin{itemize}
+		\item{Idle}
+		\item{Feed}
+		\item{Flee}
+		\item{Reproduce}
+	\end{itemize}
+		
+	\item{Some form of vegetation}
+	\item{Environmental decorations / obstacles}
+	\begin{itemize}
+		\item{Trees}
+		\item{Rocks}
+		\item{Water}
+	\end{itemize}
+
+\end{itemize}
+
+Should Have: 
+\begin{itemize}
+	\item{Gene system (Unique abilities inherited through parents)}
+	\item{Gene tracking system to graph the number of different genes throughout the simulation}
+\end{itemize}
+
+Could Have: 
+\begin{itemize}
+	\item{More advanced behaviors, for example: pack hunting or herd migrations.}
+	\item{Animations}
+\end{itemize}
+
+Won’t Have: 
+\begin{itemize}
+	\item{Building}
+	\item{Player interaction}
+\end{itemize}
+
+\section{Report structure}
+Breifly describe what you will cover in the remainder of the report, chapter by chapter.
+
+\chapter{Background}
+
+% maybe something about an actual ecology system with deer / wolf
+
+Depending on the nature of the project, this chapter may cover a literature, resource and/or (software) product review. For a literature review you will consult journal or conference papers outlining methodologies that you may (or may not) use but which are definitely relevant to your particular problem. Resource and/or product information will typcially be substantiated through internet links. 
+You may use different sections if different subareas are part of your problem statement and/or solution. 
+Since this chapter covers background resources, you should also update the corresponding bib file referred to in the bottom of this document and here it is called References.bib.
+You cite references like this: Taylor et al. \cite{Taylor:2007} investigated non-linear FEA on the GPU. Morton \cite{Morton:1966} developed a file sequencing method in 1966. A website on OpenCL can be found here \cite{Soos:2012}. Etc.
+
+\begin{table}[ht]
+	\caption{Similar System Analysis} % title of Table
+	\centering % used for centering table
+	\begin{tabular}{c c c} % centered columns (4 columns)
+		\hline\hline %inserts double horizontal lines
+		Feature name & Eco – Online Ecosystemn  & Sebastian Lague’s Ecosystem \\ [0.5ex] % inserts table
+		%heading
+		\hline % inserts single horizontal line
+		Prey  & Deer  & Rabbit \\ % inserting body of the table
+		Predator  & Wolf  & Fox \\
+		Attributes for agents  & No  & Hunger, Thirst, Reproductive Urge \\
+		Genes  & No & Random from parents \\ 
+		Movement System   & Free movement & Grid System \\ 
+		Environment   & Multi-level, Interactive  & Single Level, Grass \\ 
+		Building   & Yes & No \\
+		1st person player interactions   & Yes & No\\
+		Season progression   & Yes & no \\ [1ex] % [1ex] adds vertical space
+		\hline %inserts single line
+	\end{tabular}
+	\label{table:nonlin} % is used to refer this table in the text
+\end{table}
+
+\chapter{Methodology}\label{MethLab}
+
+% state machine desciption
+
+Describe here various methods that will be used in your project. Use different sections for distinctly different subjects and use subsections for specific details on the same subject. Only use subsubsections or paragraphs (which are not numbered) if you believe this is really necessary. Since implementation will happen in sprints, this section may need several updates with parts being added and deleted across the project.
+
+
+\chapter{Implementation}\label{Impl}
+
+\section{Idle}
+	Our Idle state had the agent stand still until the conditions to swap to another state were met. The other states were ordered by importance and the condition to swap to them would be checked in that order. The order was:
+	\begin{Enumerate}
+		\item{Feed or Hunt}
+		\item{Drink}
+		\item{Reproduce}
+	\end{Enumerate}
+\section{Drink}
+	Our Drink state uses a list of available water positions and calculates the distance between the current agent and them. It stores the closest water position and polls for a random point on the navmesh close to the water position. It then goes to that point and drinks.
+\section{Reproduce}
+	Our reproduce state makes uses of a global event called "Mating Call Event". This event triggers all the listeners "Response" method. When an agent enters the reproduction state it registers itself to the global event
+\section{Feed}
+
+\section{Hunt}
+
+\section{Flee}
+
+
+\chapter{Testing}
+
+\section{Idle}
+
+\section{Drink}
+
+\section{Reproduce}
+
+\section{Feed}
+
+\section{Hunt}
+
+\section{Flee}
+
+\chapter{Discussion, conclusion and future work}
+
+Briefly discuss and conclude your achievements and put them in perspective with the MoSCoW analysis you did early on. Be honest by declaring for example `S' categorised objectives which did not make it to the final deliverable rather than reversely modifying your MoSCoW in Chapter \ref{chap:intro}! Also discuss future developments and how you see the deliverable improving if more time could be spent. Note that this section should not be used as a medium to vent frustrations on whatever did not work out (pandemic, group partners, etc.) as there are other means for this (labs, e-mail MO, ...) that should be used well before any such problems become an issue.
+
+
+\bibliographystyle{unsrt}
+\bibliography{References}
+
+\chapter*{Contributions}
+
+State here the \% contribution to the project of each individual member of the group and describe in brief what each member has done (if this corresponds to particular sections in the report then please specify these).
+
+\chapter*{Appendix A}
+
+Put in tables of data or protocols (e.g. for testing) or code listings or UML diagrams which may take up several pages and do not sit well in the main body text.
+
+\end{document}
+
