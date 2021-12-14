@@ -1,3 +1,8 @@
+/*
+Program: PreyStateMachine.cs
+Date Created: ‎18/10/‎2021
+Description: Class for prey creatures
+*/
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -5,37 +10,39 @@ using UnityEngine;
 public class PreyStateMachine : StateMachine
 {
 	[SerializeField] float radius = 10f;
-    [SerializeField] int memorySize = 10;
-    [SerializeField] public LayerMask detectionMasks;
-    
-    [SerializeField] protected GameObject babyDeerPrefab;
-    [SerializeField] protected GameObject maleDeerPrefab;
-    [SerializeField] protected GameObject femaleDeerPrefab;
+	[SerializeField] int memorySize = 10;
+	[SerializeField] public LayerMask detectionMasks;
 	
-    protected override void Start()
-    {
+	[SerializeField] protected GameObject babyDeerPrefab;
+	[SerializeField] protected GameObject maleDeerPrefab;
+	[SerializeField] protected GameObject femaleDeerPrefab;
+	
+	protected override void Start()
+	{
 		detectionMasks = LayerMask.GetMask("Predator");
-        SetState(new Idle(this));
-        base.Start();
-    }
+		SetState(new Idle(this));
+		base.Start();
+	}
 
-    protected override void Update()
-    {
+	protected override void Update()
+	{
+		//Repeatedly checks for predators, prioritising this over all other needs
 		predator = CheckForPredators();
 		if (predator && _state.GetType() != typeof(Flee)){
 			SetState(new Flee(this));
 		}
-        _state.OnUpdate();
+		_state.OnUpdate();
 		base.Update();
 	}
 	
+	//Checks for nearby predators in a radius and returns the closest
 	private GameObject CheckForPredators()
 	{
 		Collider[] results = new Collider[memorySize];
 		Vector3 direction;
 		RaycastHit hit;
 		float minDistance = float.MaxValue;
-        GameObject closestObj = null;
+		GameObject closestObj = null;
 		if (Physics.OverlapSphereNonAlloc(transform.position, radius, results, detectionMasks) > 0)
 		{
 			foreach (Collider obj in results){
@@ -56,22 +63,22 @@ public class PreyStateMachine : StateMachine
 		}
 		return null;
 	}
-  
-  public override void SpawnBaby()
-    {
-        GameObject temp = Instantiate(babyDeerPrefab, transform.position, Quaternion.identity);
-        temp.GetComponent<StateMachine>().isBaby = true;
-    }
+	
+	public override void SpawnBaby()
+	{
+		GameObject temp = Instantiate(babyDeerPrefab, transform.position, Quaternion.identity);
+		temp.GetComponent<StateMachine>().isBaby = true;
+	}
+	
+	//Matures creatures by spawning an adult of random gender over them and deleting themself
+	public override void Mature()
+	{
+		int rndm = Random.Range(1, 3);
+		if (rndm == 1)
+			Instantiate(maleDeerPrefab, transform.position, Quaternion.identity);
+		else
+			Instantiate(femaleDeerPrefab, transform.position, Quaternion.identity);
 
-    public override void Mature()
-    {
-        int rndm = Random.Range(1, 3);
-        if (rndm == 1)
-            Instantiate(maleDeerPrefab, transform.position, Quaternion.identity);
-        else
-            Instantiate(femaleDeerPrefab, transform.position, Quaternion.identity);
-
-        MyDestroy(this.gameObject);
-    }
-  
+		MyDestroy(this.gameObject);
+	}
 }

@@ -1,3 +1,8 @@
+/*
+Program: StateMachine.cs
+Date Created: ‎18/10/‎2021
+Description: Basic creature class which the predator and prey classes inherit from
+*/
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -36,6 +41,7 @@ public abstract class StateMachine : MonoBehaviour
 
     protected virtual void Start()
     {
+		//Detect the nav mesh and variables needed to move across the map
         navMeshAgent = GetComponent<NavMeshAgent>();
         detection = GetComponent<Detection>();
         tracker = GameObject.Find("Tracker").GetComponent<Tracker>();
@@ -43,15 +49,19 @@ public abstract class StateMachine : MonoBehaviour
 
     protected virtual void Update()
     {
+		//Decrease hunger and thirst value over time
         hunger -= hungerUsage * Time.deltaTime;
         thirst -= thirstUsage * Time.deltaTime;
 
+		//Increase urge to reproduce if the creature is sexually mature
         if (reproductiveUrge < 100 && !isBaby)
             reproductiveUrge += reproductiveUrgeIncrease * Time.deltaTime;
 
+		//Destroy creatures that starveor die of dehydration
         if (hunger <= 0 || thirst <= 0)
             MyDestroy(this.gameObject);
 
+		//Age babies
         if (isBaby && maturity < 100)
             maturity += 1 * Time.deltaTime;
 
