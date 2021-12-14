@@ -1,4 +1,9 @@
-﻿using System.Collections;
+﻿/*
+Program: Reproduce.cs
+Date Created: ‎18/10/‎2021
+Description: State creatures enter to search our a mate to breed with
+*/
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -21,8 +26,8 @@ public class Reproduce : State
 
     public override IEnumerator OnStart()
     {
-        //_stateMachine.detection.detectionMasks = LayerMask.GetMask("Prey");
-        _stateMachine.detection.detectionMasks = LayerMask.GetMask(LayerMask.LayerToName(_stateMachine.gameObject.layer));
+        //Look for nearby creatures of the same species (on the same predator/prey layer)
+		_stateMachine.detection.detectionMasks = LayerMask.GetMask(LayerMask.LayerToName(_stateMachine.gameObject.layer));
         _stateMachine.detection.enabled = true;
         _stateMachine.detection.action += SetTargetMate;
         _stateMachine.detection.detectionAngle = 180.0f;
@@ -33,7 +38,8 @@ public class Reproduce : State
 
         return base.OnStart();
     }
-
+	
+	//Sets new mate targets in the OnStart function
     void SetTargetMate(Detection detection, GameObject mate)
     {
         StateMachine stateMachine = mate.GetComponent<StateMachine>();

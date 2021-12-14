@@ -1,4 +1,9 @@
-﻿using System.Collections;
+﻿/*
+Program: Hunt.cs
+Date Created: ‎18/10/‎2021
+Description: State predator creatures enter whilst hungry to search for food to eat
+*/
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.AI;
@@ -13,6 +18,7 @@ public class Hunt : State
 	}
 	
 	public override IEnumerator OnStart(){
+		//Looks for a nearby prey creature within the creature's vision
 		_stateMachine.detection.detectionMasks = LayerMask.GetMask("Prey");
         _stateMachine.detection.enabled = true;
 		_stateMachine.detection.action += SetTargetPrey;
@@ -20,6 +26,7 @@ public class Hunt : State
         return base.OnStart();
     }
 	
+	//Sets new prey targets in the OnStart function
 	void SetTargetPrey(Detection detection, GameObject prey){
 		if (!targetPrey){
             targetPrey = prey;
@@ -27,7 +34,8 @@ public class Hunt : State
     }
 	
     public override IEnumerator OnUpdate(){
-        if (_stateMachine.hunger > 100){
+        //If hunger is sated, switch to a different state based off of the creature's needs
+		if (_stateMachine.hunger > 100){
             
 			_stateMachine.StartCoroutine(OnExit());
 
@@ -47,13 +55,15 @@ public class Hunt : State
                 break;
             }
             
-            if (targetPrey){//If prey has been found, go to it
+			//If prey has been found, go to it
+            if (targetPrey){
                 _stateMachine.navMeshAgent.SetDestination(targetPrey.transform.position);
                 yield return new WaitForSeconds(2f);
                 _stateMachine.MyDestroy(targetPrey);
                 _stateMachine.hunger += 80;
                 targetPrey = null;
             }
+			//Otherwise search around
             else{
                 float x = Random.Range(-10, 10);
                 float z = Random.Range(-10, 10);
@@ -71,6 +81,7 @@ public class Hunt : State
 
     public override IEnumerator OnExit()
     {
+		//Clear target
 		_stateMachine.detection.enabled = false;
         _stateMachine.detection.action -= SetTargetPrey;
         return base.OnExit();

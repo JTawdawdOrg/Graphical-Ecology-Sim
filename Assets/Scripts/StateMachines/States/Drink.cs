@@ -1,4 +1,9 @@
-﻿using System.Collections;
+﻿/*
+Program: Drink.cs
+Date Created: ‎18/10/‎2021
+Description: State creatures enter whilst thirsty to search for water to drink
+*/
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -17,6 +22,7 @@ public class Drink : State
 
     public override IEnumerator OnUpdate()
     {
+		//If thirst is sated, switch to a different state based off of the creature's needs
         if (_stateMachine.thirst > 100)
         {
             _stateMachine.StartCoroutine(OnExit());
@@ -53,7 +59,7 @@ public class Drink : State
         float x;
         float z;
         float yOffset = 30;
-
+		// find a position on the ground
         Ray ray;
         RaycastHit hit;
         while (true)

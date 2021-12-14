@@ -1,4 +1,9 @@
-﻿using System.Collections;
+﻿/*
+Program: Feed.cs
+Date Created: ‎18/10/‎2021
+Description: State prey creatures enter whilst hungry to search for food to eat
+*/
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.AI;
@@ -14,13 +19,15 @@ public class Feed : State
 
     public override IEnumerator OnStart()
     {
+		//Looks for a nearby grass object within the creature's vision
         _stateMachine.detection.detectionMasks = LayerMask.GetMask("Grass");
         _stateMachine.detection.enabled = true;
         _stateMachine.detection.action += SetTargetGrass;
         _stateMachine.StartCoroutine(Execution());
         return base.OnStart();
     }
-
+	
+	//Sets new grass targets in the OnStart function
     void SetTargetGrass(Detection detection, GameObject grass)
     {
         if (!targetGrass)
@@ -31,6 +38,7 @@ public class Feed : State
 
     public override IEnumerator OnUpdate()
     {
+		//If hunger is sated, switch to a different state based off of the creature's needs
         if (_stateMachine.hunger > 100)
         {
             _stateMachine.StartCoroutine(OnExit());
@@ -66,6 +74,7 @@ public class Feed : State
             }
             else
             {
+				//Find a position on the ground
                 float x = Random.Range(-10, 10);
                 float z = Random.Range(-10, 10);
                 Ray ray = new Ray(new Vector3(_stateMachine.transform.position.x + x, 30, _stateMachine.transform.position.z + z), Vector3.down);
@@ -92,6 +101,7 @@ public class Feed : State
 
     public override IEnumerator OnExit()
     {
+		//Clear target
         _stateMachine.detection.action -= SetTargetGrass;
         _stateMachine.detection.enabled = false;
         return base.OnExit();

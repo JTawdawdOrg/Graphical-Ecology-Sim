@@ -1,4 +1,10 @@
-﻿using System.Collections;
+﻿/*
+Program: Idle.cs
+Date Created: ‎18/10/‎2021
+Description: State creatures enter whilst not hungry, thirsty, desiring to reproduce, or in danger
+To do: Add some degree of movement/searching for predators whilst idle
+*/
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -19,18 +25,11 @@ public class Idle : State
 
     public override IEnumerator OnUpdate()
     {
+		//Check if the creature has any needs to make it no longer idle
         if (_stateMachine.hunger < _stateMachine.hungerThreshold 
             || _stateMachine.thirst < _stateMachine.thirstThreshold 
             || _stateMachine.reproductiveUrge > _stateMachine.reproductiveUrgeThreshhold)
             _stateMachine.StartCoroutine(OnExit());
-		
-		/*if (layer==7){//prey check for nearby predators
-			_stateMachine.detection.detectionMasks = LayerMask.GetMask("Predator");
-			_stateMachine.detection.enabled = true;
-			_stateMachine.detection.action += SetTargetGrass;
-			Debug.Log("");
-		}*/
-		
 		if (_stateMachine.hunger < _stateMachine.hungerThreshold){
             if(layer==8){//Predator
 				_stateMachine.SetState(new Hunt(_stateMachine));

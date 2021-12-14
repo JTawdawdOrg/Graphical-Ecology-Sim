@@ -1,4 +1,9 @@
-﻿using System.Collections;
+﻿/*
+Program: State.cs
+Date Created: ‎18/10/‎2021
+Description: Basic state for other state classes to inherit from
+*/
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
